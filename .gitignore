@@ -1,0 +1,13 @@
+*.css
+*.idea
+*.js
+*.gif
+*.html
+*.xml
+*.lst
+*.png
+*.exe
+*.xml
+*.html
+
+target/*
