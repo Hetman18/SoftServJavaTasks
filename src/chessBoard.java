@@ -1,48 +1,64 @@
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.Scanner;
 
 public class chessBoard {
-    Scanner sc = new Scanner(System.in);
-    protected String chessBoardHeight = sc.nextLine();
-    protected String chessBoardWidth = sc.nextLine();
+    private int chessBoardHeight;
+    private int chessBoardWidth;
 
-    public boolean inputValidationHeight() {
-        boolean inputHeight = chessBoardHeight.matches("\\d{2}");
-        while (inputHeight = false) {
-            System.out.println("Incorrect input value!");
-            continue;
+    public chessBoard(int chessBoardHeight, int chessBoardWidth) {
+        System.out.println("Enter integer height and width please.");
+        Scanner sc = new Scanner(System.in);
+        if (chessBoardHeight < 1 || chessBoardWidth < 1) {
+            throw new IllegalArgumentException("height and width must be more than 0!");
         }
-        return inputHeight;
+        int maxHeightWidthValue = 80;
+        if (chessBoardHeight > maxHeightWidthValue || chessBoardWidth > maxHeightWidthValue) {
+            throw new IllegalArgumentException("height and width must be less than 80!");
+        }
+        System.out.println("Enter integer height: ");
+        this.chessBoardHeight = sc.nextInt();
+        System.out.println("Enter integer width: ");
+        this.chessBoardWidth = sc.nextInt();
     }
 
-    public boolean inputValidationWidth() {
-        boolean inputWidth = chessBoardWidth.matches("\\d{2}");
-        while (inputWidth = false){
-            System.out.println("Incorrect input value, try againe!");
-            continue;
-        }
-        return inputWidth;
+    chessBoard() {
     }
-    public String createChessBoard () {
-        inputValidationHeight();
-        inputValidationWidth();
-        int height = Integer.parseInt(chessBoardHeight);
-        for (int i = 0; i < height; i++) {
+
+    private int getChessBoardHeight() {
+        return chessBoardHeight;
+    }
+
+    private int getChessBoardWidth() {
+        return chessBoardWidth;
+    }
+
+    String createChessBoard() {
+        int height = getChessBoardHeight();
+        int width = getChessBoardWidth();
+        for (int i = 0; i <= height; i++) {
             if (i % 2 == 0) {
-                System.out.println(" ");
+                System.out.print("*");
             } else {
-                System.out.println("*");
+                System.out.print(" ");
             }
-            int width = Integer.parseInt(chessBoardWidth);
-            for (int j = 0; j < width; j++) {
+            for (int j = 0; j <= width; j++) {
                 if (j % 2 == 0) {
-                    System.out.println("*");
+                    System.out.print(" ");
                 } else {
-                    System.out.println(" ");
+                    System.out.print("*");
                 }
             }
+            System.out.println();
         }
-        return createChessBoard();
+        return;
     }
+
 }
+
+//        ArrayList<Integer> heightList = new ArrayList<>(Arrays.asList(getChessBoardHeight()));
+//        for (Integer height : heightList) {
+//            if (height % 2 == 0){
+//                System.out.print(" ");
+//            } else {
+//                System.out.println("*");
+//            }
+//        }
