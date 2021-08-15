@@ -5,7 +5,7 @@ public class InPutAndValidationParametrs {
 
 
     public int inputValidParameters() {
-        int parameter;
+        int parameter = 0;
         while (true) {
             try {
                 parameter = Integer.parseInt(sc.nextLine());
@@ -16,6 +16,8 @@ public class InPutAndValidationParametrs {
             } catch (NumberFormatException e) {
                 System.err.println("Wrong input format");
                 continue;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
             return parameter;
         }
