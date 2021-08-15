@@ -33,7 +33,7 @@ class EnvelopeAnalyse extends InPutEnvelopesParameters {
         return inPutValidStringParameters();
     }
 
-    private boolean inPutValidStringParameters(){
+    private boolean inPutValidStringParameters() {
         String strAnswer;
         ArrayList<String> list = new ArrayList<>();
         list.add("y");
@@ -41,14 +41,18 @@ class EnvelopeAnalyse extends InPutEnvelopesParameters {
         list.add("yes");
         list.add("YES");
         while (true) {
-            System.out.println("If you want to continue enter 'y' or 'yes': ");
-            strAnswer = sc.nextLine();
-            if (!list.contains(strAnswer)) {
-                continue;
-            } else {
+            try {
+                System.out.println("If you want to continue enter 'y' or 'yes': ");
+                strAnswer = sc.nextLine();
+                if (!list.contains(strAnswer)) {
+                    break;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
+            return new EnvelopeAnalyse().analyseEnvelopesNested();
         }
-        return analyseEnvelopesNested();
+        return new EnvelopeAnalyse().analyseEnvelopesNested();
     }
 }
 
