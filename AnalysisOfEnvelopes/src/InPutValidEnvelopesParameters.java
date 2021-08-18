@@ -1,8 +1,7 @@
 import java.util.Scanner;
 
-class InPutEnvelopesParameters {
+class InPutValidEnvelopesParameters {
     private Scanner sc = new Scanner(System.in);
-
 
     float getEnvelopeSideA() {
         System.out.println("Enter float side A: ");

@@ -1,8 +1,6 @@
-import javax.swing.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
-class EnvelopeAnalyse extends InPutEnvelopesParameters {
+class EnvelopeAnalyse {
     private float sideA;
     private float sideB;
     private float sideC;
@@ -10,10 +8,10 @@ class EnvelopeAnalyse extends InPutEnvelopesParameters {
     private Scanner sc = new Scanner(System.in);
 
     EnvelopeAnalyse() {
-        this.sideA = getEnvelopeSideA();
-        this.sideB = getEnvelopeSideB();
-        this.sideC = getEnvelopeSideC();
-        this.sideD = getEnvelopeSideD();
+        this.sideA = new InPutValidEnvelopesParameters().getEnvelopeSideA();
+        this.sideB = new InPutValidEnvelopesParameters().getEnvelopeSideB();
+        this.sideC = new InPutValidEnvelopesParameters().getEnvelopeSideC();
+        this.sideD = new InPutValidEnvelopesParameters().getEnvelopeSideD();
     }
 
     boolean analyseEnvelopesNested() {
@@ -30,29 +28,24 @@ class EnvelopeAnalyse extends InPutEnvelopesParameters {
         } else {
             System.out.println("No one envelope can't be nested to another");
         }
-        return inPutValidStringParameters();
+        return areYouWantToContinueAnalyse();
     }
 
-    private boolean inPutValidStringParameters() {
+    private boolean areYouWantToContinueAnalyse() {
         String strAnswer;
-        ArrayList<String> list = new ArrayList<>();
-        list.add("y");
-        list.add("Y");
-        list.add("yes");
-        list.add("YES");
         while (true) {
             try {
                 System.out.println("If you want to continue enter 'y' or 'yes': ");
                 strAnswer = sc.nextLine();
-                if (!list.contains(strAnswer)) {
-                    break;
+                if (!(strAnswer.equals("y") || strAnswer.equals("yes") || strAnswer.equals("Y") || strAnswer.equals("YES"))) {
+                    return true;
+                } else {
+                    new EnvelopeAnalyse().analyseEnvelopesNested();
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            return new EnvelopeAnalyse().analyseEnvelopesNested();
         }
-        return new EnvelopeAnalyse().analyseEnvelopesNested();
     }
 }
 

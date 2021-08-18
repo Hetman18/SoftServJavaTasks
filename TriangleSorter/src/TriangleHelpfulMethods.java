@@ -1,45 +1,60 @@
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
-class TriangleHelpfulMethods extends TriangleSorter {
+class TriangleHelpfulMethods {
     private Scanner sc = new Scanner(System.in);
-    private boolean controlTriangle() {
-        while (getSideA() + getSideB() <= getSideC() ||
-                getSideA() + getSideC() <= getSideB() || getSideB() + getSideC() <= getSideA()) {
+
+    public Triangle createTriangles() throws IllegalArgumentException {
+        String[] trianglesParameters = InPutValidationParameters.inPutTriangleParameters();
+        if (trianglesParameters.length == 4) {
+            String name = trianglesParameters[0];
+            double sideA = Double.parseDouble(trianglesParameters[1]);
+            double sideB = Double.parseDouble(trianglesParameters[2]);
+            double sideC = Double.parseDouble(trianglesParameters[3]);
+            if (validationTriangle(sideA, sideB, sideC)) {
+
+                return new Triangle(name, sideA, sideB, sideC);
+            }
+            throw new IllegalArgumentException("Enter wrong double parameters!");
+        } else {
+            throw new IllegalArgumentException("Enter wrong parameters!");
+        }
+    }
+
+    public boolean validationTriangle(double sideA, double sideB, double sideC) {
+        if (sideA + sideB <= sideC &&
+                sideA + sideC <= sideB && sideB + sideC <= sideA) {
             System.out.println("Triangle with this parameters can't be.");
-            getTriangleSquare();
+            return false;
         }
         return true;
     }
-boolean getControTriangle(){
-        return controlTriangle();
-}
-   private double calculateHalfPerimeter(){
-        double halfPerimeter;
-        halfPerimeter = (getSideA() + getSideB() + getSideC()) / 2;
-        return halfPerimeter;
-    }
-    double getHalfTrianglePerimeter() {
-        return calculateHalfPerimeter();
-    }
-    double selectProcess() {
 
-        System.out.println("Do you want to continue? Print 'y' or 'yes', if don't another: ");
-        ArrayList<String> list = new ArrayList<>();
-        list.add("y");
-        list.add("yes");
-        list.add("Y");
-        list.add("YES");
-        String answer = sc.nextLine();
-        try {
-            if (true) {
-                list.contains(answer);
+    public boolean areYouWantToContinueAnalyse() {
+        String strAnswer;
+        Triangle.triangleParameters.add(createTriangles());
+        while (true) {
+            try {
+                System.out.println("If you want to continue build triangles enter 'y' or 'yes': ");
+                strAnswer = sc.nextLine();
+                if (!(strAnswer.equals("y") || strAnswer.equals("yes") || strAnswer.equals("Y") || strAnswer.equals("YES"))) {
+                    outPutTriangles();
+                    System.exit(0);
+                } else {
+                    Triangle.triangleParameters.add(createTriangles());
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
-            return getTriangleSquare();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
         }
-        return triangleArray();
     }
 
+    private void outPutTriangles() {
+        System.out.println("============= Triangles list: ===============");
+        Collections.sort(Triangle.triangleParameters, Collections.reverseOrder());
+        for (int i = 0; i < Triangle.triangleParameters.size(); i++) {
+            System.out.println(Triangle.triangleParameters.get(i));
+        }
+    }
 }
+

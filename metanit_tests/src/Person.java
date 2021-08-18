@@ -1,19 +1,26 @@
 class Person {
+
     private String name;
+    Account account;
 
-    Person(String name) {
+    Person(String name, String password) {
         this.name = name;
+        account = new Account(password);
     }
 
-    public void setName(String name) {
-        this.name = name;
+    void displayPerson(){
+        System.out.printf("Person \t Name: %s \t Password %s \n", name, account.password);
     }
 
-    public String getName(){
-        return this.name;
+    public class Account{
+        private String password;
+
+    Account(String pass){
+        this.password = pass;
     }
-    public static void changeName(Person p){
-        p.setName("Alice");
+    void displayAccount(){
+        System.out.printf("Account Login: %s \t Password: %s \n", Person.this.name, password);
     }
     }
+}
 
