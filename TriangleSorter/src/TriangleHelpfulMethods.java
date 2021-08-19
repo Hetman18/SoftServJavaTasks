@@ -5,7 +5,7 @@ class TriangleHelpfulMethods {
     private Scanner sc = new Scanner(System.in);
 
     public Triangle createTriangles() throws IllegalArgumentException {
-        String[] trianglesParameters = InPutValidationParameters.inPutTriangleParameters();
+        String[] trianglesParameters = InPutTriangleParameters.inPutTriangleParameters();
         if (trianglesParameters.length == 4) {
             String name = trianglesParameters[0];
             double sideA = Double.parseDouble(trianglesParameters[1]);

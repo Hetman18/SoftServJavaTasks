@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class InPutValidationParameters {
+class InPutTriangleParameters {
 
     public static String[] inPutTriangleParameters() {
         Scanner sc = new Scanner(System.in);
