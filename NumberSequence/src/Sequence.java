@@ -23,34 +23,14 @@ public class Sequence {
         return maxSquare;
     }
 
-    public int sqrtFromMaxSquare() {
-        int sqrtMaxSquare = 0;
-        sqrtMaxSquare = (int) Math.sqrt(new Sequence().getMaxSquare());
-        return sqrtMaxSquare;
-    }
-
     public List<Integer> sequence() {
 //        Sequence sequence = new Sequence(sqrtFromMaxSquare(), getLengthNumber());
-        int startSequence = sqrtFromMaxSquare();
+        int startSequence = new SequenceProgram().sqrtFromMaxSquare();
         getLengthNumber();
         List<Integer> sequenceArray = new ArrayList<>();
         for (int i = 0; i < lengthNumber; i++) {
             sequenceArray.add(startSequence++);
         }
         return sequenceArray;
-    }
-//    public int createSequence() {
-//        Sequence sequence = new Sequence(getMaxSquare(), getLengthNumber());
-//        new SequenceProgram().sequence();
-//    }
-
-//        public void outPutSequence() {
-//        sequence().toString();
-//        }
-
-    public void outPutSequence() {
-        for (Integer arr : sequence()) {
-            System.out.println(arr);
-        }
     }
 }
