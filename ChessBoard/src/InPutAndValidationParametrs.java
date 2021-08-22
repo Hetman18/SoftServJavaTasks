@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class InPutAndValidationParametrs {
     public Scanner sc = new Scanner(System.in);
 
-
     public int inputValidParameters() {
         int parameter = 0;
         while (true) {

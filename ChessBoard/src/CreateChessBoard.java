@@ -1,6 +1,4 @@
 public class CreateChessBoard extends InPutAndValidationParametrs {
-    CreateChessBoard() {
-    }
 
     private int setChessBoardHeight() {
         System.out.println("Enter Height integer parameter: ");

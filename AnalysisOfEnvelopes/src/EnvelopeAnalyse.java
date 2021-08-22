@@ -38,7 +38,7 @@ class EnvelopeAnalyse {
                 System.out.println("If you want to continue enter 'y' or 'yes': ");
                 strAnswer = sc.nextLine();
                 if (!(strAnswer.equals("y") || strAnswer.equals("yes") || strAnswer.equals("Y") || strAnswer.equals("YES"))) {
-                    return true;
+                    System.exit(0);
                 } else {
                     new EnvelopeAnalyse().analyseEnvelopesNested();
                 }
