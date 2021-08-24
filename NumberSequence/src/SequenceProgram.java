@@ -1,9 +1,9 @@
 public class SequenceProgram {
 
     public int sqrtFromMaxSquare() {
-        int sqrtMaxSquare = 0;
-        sqrtMaxSquare = (int) Math.sqrt(new Sequence().getMaxSquare());
-        return sqrtMaxSquare;
+        double sqrtMaxSquare = Math.ceil(Math.sqrt(new Sequence().getMaxSquare()));
+//        int maxSquare = Math.ceil(sqrtMaxSquare);
+        return (int) sqrtMaxSquare;
     }
 
     public void outPutSequence() {

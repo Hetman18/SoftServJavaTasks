@@ -14,11 +14,13 @@ public class Sequence {
     }
 
     public int getLengthNumber() {
+        System.out.println("Length!");
         lengthNumber = new InPutParameters().inPutParameters();
         return lengthNumber;
     }
 
     public int getMaxSquare() {
+        System.out.println("Max M");
         maxSquare = new InPutParameters().inPutParameters();
         return maxSquare;
     }
