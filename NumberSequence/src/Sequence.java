@@ -25,8 +25,7 @@ public class Sequence {
         return maxSquare;
     }
 
-    public List<Integer> sequence() {
-//        Sequence sequence = new Sequence(sqrtFromMaxSquare(), getLengthNumber());
+    public List<Integer> getSequence() {
         int startSequence = new SequenceProgram().sqrtFromMaxSquare();
         getLengthNumber();
         List<Integer> sequenceArray = new ArrayList<>();

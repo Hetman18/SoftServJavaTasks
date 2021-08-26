@@ -14,7 +14,7 @@ public class InPutParameters {
             inPutNumber = sc.nextInt();
         } while (inPutNumber <= 0);
         {
-            System.out.println("Thank you! Got " + inPutNumber);
+            System.out.println("Thank you! Number " + inPutNumber);
         }
         return inPutNumber;
     }

@@ -1,26 +1,36 @@
 class Person {
 
     private String name;
-    Account account;
+    private int age;
+    boolean schooler;
 
-    Person(String name, String password) {
+    Person(String name, int age) {
         this.name = name;
-        account = new Account(password);
+        this.age = age;
     }
 
-    void displayPerson(){
-        System.out.printf("Person \t Name: %s \t Password %s \n", name, account.password);
+    public boolean isSchooler() {
+        return schooler;
     }
 
-    public class Account{
-        private String password;
+    public void setSchooler(boolean schooler) {
+        this.schooler = schooler;
+    }
 
-    Account(String pass){
-        this.password = pass;
+    public String getName() {
+        return name;
     }
-    void displayAccount(){
-        System.out.printf("Account Login: %s \t Password: %s \n", Person.this.name, password);
+
+    public void setName(String name) {
+        this.name = name;
     }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }
 

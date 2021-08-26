@@ -1,35 +1,52 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Parser {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    private String inPutArguments;
 
     public String getInPutArguments() throws IOException {
         System.out.println("Enter new line: ");
-        inPutArguments = reader.readLine();
-        return inPutArguments;
+        return reader.readLine();
     }
 
-    public void chooseProgram() throws IOException {
-        System.out.println("Enter 1 if you want to count entering in string, " +
-                "2 if you want to change string on text or another to exit: ");
-        String chose = reader.readLine();
-        switch (chose) {
-            case "1": {
-                new Program().matchText();
-                chooseProgram();
-            }
-            case "2": {
-                new OutPutArguments().outPut();
-                chooseProgram();
-            }
-            default: {
-                System.exit(0);
-                break;
+    public int matchText(Program textArray, InPutArguments matchText) throws IOException {
+        int matcherCount = 0;
+        Pattern pattern = Pattern.compile(matchText.inPutMatchText(),
+                Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+        for (String str : textArray.readText()) {
+            Matcher matcher = pattern.matcher(str);
+            while (matcher.find()) {
+                matcherCount++;
             }
         }
+        System.out.println(matcherCount);
+        return matcherCount;
+    }
+    public List<String> changeStartText() throws IOException {
+        List<String> changeTextArray = new Program().readText();
+        String changeStr = new Program().changeString();
+        try {
+            changeTextArray.set(new InPutArguments().choseIndexOfString(), changeStr);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Enter wrong index!");
+        }
+        return changeTextArray;
+    }
+
+    public void writeChangeTextToFile() throws IOException {
+        List<String> textList = changeStartText();
+        File file = new File("File_Parser/src/Next.txt");
+        file.createNewFile();
+        FileWriter fileWriter = new FileWriter(file);
+        for (String textString : textList) {
+            fileWriter.write(textString + "\n");
+        }
+        fileWriter.flush();
+        fileWriter.close();
     }
 }
 

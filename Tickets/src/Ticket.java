@@ -1,45 +1,86 @@
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class Ticket {
 
-    private int ticketNumber;
-    static ArrayList<Ticket> ticketsNumberList;
+    private int maxTicketNumber;
+    private int minTicketNumber;
+    Scanner sc = new Scanner(System.in);
 
-    public Ticket(int ticketNumber) {
-        this.ticketNumber = ticketNumber;
+    public Ticket(int maxTicketNumber, int minTicketNumber) {
+        this.maxTicketNumber = maxTicketNumber;
+        this.minTicketNumber = minTicketNumber;
     }
 
-    public Ticket() {
+    public int getMaxTicketNumber() {
+        return maxTicketNumber;
+    }
+
+    public void setMaxTicketNumber() {
+        System.out.println("Enter max value with 6 digits of ticket");
+        this.maxTicketNumber = sc.nextInt();
+    }
+
+    public int getMinTicketNumber() {
+        return minTicketNumber;
+    }
+
+    public void setMinTicketNumber() {
+        System.out.println("Enter min value with 6 digits of ticket");
+        this.minTicketNumber = sc.nextInt();
+    }
+
+    public ArrayList<Integer> ticketCounter () {
+//        Ticket counter = new Ticket(getMaxTicketNumber(), getMinTicketNumber());
+        ArrayList <Integer> ticketsArray = new ArrayList<>();
+        for (int i = getMinTicketNumber(); i <= getMaxTicketNumber(); i++) {
+            ticketsArray.add(i);
+        }
+        return ticketsArray;
+    }
+
+    public boolean chek(){
+        for (Integer ticketNumber : ticketCounter()){
+        String strChislo = String.valueOf(ticketNumber);
+        if(strChislo.length()/6 == 0){
+            System.out.println("Six digits value.");
+        }
+        else {
+            System.out.println("Not six numbers value.");
+            return false;
+        }
+        char[] chaChislo = strChislo.toCharArray();
+        int value1 = 0;
+        int value2 = 0;
+
+        for (int i = 0; i < chaChislo.length; i++) {
+            if(chaChislo.length/2 > i){
+                value1 += Character.getNumericValue(chaChislo[i]);
+            }
+            else{
+                value2 += Character.getNumericValue(chaChislo[i]);
+            }
+        }
+
+        if(value1 == value2){
+            return true;
+        }
+        else return false;
 
     }
 
-    public int[] numberArray() {
-        int [] arrayNumbers = new int[] {0, 0, 0, 0, 0, 0};
+    public int[] tickets() {
+        int[] arrayNumbers = new int[6];
         for (Integer arr : arrayNumbers) {
             for (int i = arr; i < 9; i++) {
                 arr++;
             }
         }
-//            for (int j = 0; j < arrayNumbers.length; j++) {
-//                arrayNumbers[j] = j;
-//                for (arrayNumbers[j] = 0; arrayNumbers[j] < 9; arrayNumbers[j]++) {
-//
-//                }
-//        }
-//        List<Ticket> ticketsArray = new ArrayList<>();
-//        for (int i = 0; i < ; i++) {
-//
-//        }
-    return arrayNumbers;
+        return arrayNumbers;
     }
 
-//    public List<Integer> inPutNumbers() {
-//
-//        for (int i = this.ticketNumber; i < 1000000; i++) {
-//        }
-//        return ticketsNumberList.add(new Ticket (this.ticketNumber));;
-//    }
+}
+
 
 //    public ArrayList<Integer> segregationTicketsNumber() {
 //        for (Integer number : inPutNumbers()) {
@@ -79,10 +120,5 @@ public class Ticket {
 //        return happyHardCounter;
 //    }
 
-    public void outPutEasyMethod(){
-        for (Integer number : numberArray()) {
-            System.out.println(number);
-        }
-    }
-}
+
 
