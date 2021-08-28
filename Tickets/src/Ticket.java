@@ -16,18 +16,17 @@ public class Ticket {
         return maxTicketNumber;
     }
 
-    public void setMaxTicketNumber() {
-        System.out.println("Enter max value with 6 digits of ticket");
-        this.maxTicketNumber = sc.nextInt();
+    public void setMaxTicketNumber(int maxTicketNumber) {
+
+        this.maxTicketNumber = maxTicketNumber;
     }
 
     public int getMinTicketNumber() {
         return minTicketNumber;
     }
 
-    public void setMinTicketNumber() {
-        System.out.println("Enter min value with 6 digits of ticket");
-        this.minTicketNumber = sc.nextInt();
+    public void setMinTicketNumber(int maxTicketNumber) {
+        this.minTicketNumber = maxTicketNumber;
     }
 
     public ArrayList<Integer> ticketCounter () {
@@ -40,29 +39,28 @@ public class Ticket {
     }
 
     public boolean chek(){
-        for (Integer ticketNumber : ticketCounter()){
-        String strChislo = String.valueOf(ticketNumber);
-        if(strChislo.length()/6 == 0){
-            System.out.println("Six digits value.");
-        }
-        else {
-            System.out.println("Not six numbers value.");
-            return false;
-        }
-        char[] chaChislo = strChislo.toCharArray();
-        int value1 = 0;
-        int value2 = 0;
+        for (Integer ticketNumber : ticketCounter()) {
+            String strNumber = String.valueOf(ticketNumber);
+            if (strNumber.length() / 6 == 0) {
+                System.out.println("Six digits value.");
+            } else {
+                System.out.println("Not six numbers value.");
+                return false;
+            }
+        char[] charDigit = strNumber.toCharArray();
+        int valueFirstThree = 0;
+        int valueSecondThree = 0;
 
-        for (int i = 0; i < chaChislo.length; i++) {
-            if(chaChislo.length/2 > i){
-                value1 += Character.getNumericValue(chaChislo[i]);
+        for (int i = 0; i < charDigit.length; i++) {
+            if(charDigit.length/2 > i){
+                valueFirstThree += Character.getNumericValue(charDigit[i]);
             }
             else{
-                value2 += Character.getNumericValue(chaChislo[i]);
+                valueSecondThree += Character.getNumericValue(charDigit[i]);
             }
         }
 
-        if(value1 == value2){
+        if(valueFirstThree == valueSecondThree){
             return true;
         }
         else return false;

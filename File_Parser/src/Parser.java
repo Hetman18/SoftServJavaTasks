@@ -1,17 +1,11 @@
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
-    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-    public String getInPutArguments() throws IOException {
-        System.out.println("Enter new line: ");
-        return reader.readLine();
-    }
 
     public int matchText(Program textArray, InPutArguments matchText) throws IOException {
         int matcherCount = 0;
@@ -26,20 +20,12 @@ public class Parser {
         System.out.println(matcherCount);
         return matcherCount;
     }
-    public List<String> changeStartText() throws IOException {
-        List<String> changeTextArray = new Program().readText();
-        String changeStr = new Program().changeString();
-        try {
-            changeTextArray.set(new InPutArguments().choseIndexOfString(), changeStr);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Enter wrong index!");
-        }
-        return changeTextArray;
-    }
 
     public void writeChangeTextToFile() throws IOException {
-        List<String> textList = changeStartText();
-        File file = new File("File_Parser/src/Next.txt");
+        Program program = new Program();
+        List<String> textList = program.changeStartText();
+        String fileLink = program.getLink();
+        File file = new File(fileLink);
         file.createNewFile();
         FileWriter fileWriter = new FileWriter(file);
         for (String textString : textList) {
@@ -48,5 +34,7 @@ public class Parser {
         fileWriter.flush();
         fileWriter.close();
     }
+
+
 }
 
